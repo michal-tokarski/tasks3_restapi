@@ -37,13 +37,21 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 
-	// New - added 29.06.2020
-	// compileOnly 'org.projectlombok:lombok'
-	// annotationProcessor 'org.projectlombok:lombok'
-	compileOnly 'org.projectlombok:lombok:1.18.12'
-	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	// New - 29.06.2020
+	// compileOnly 'org.projectlombok:lombok' // without version number
+	compileOnly 'org.projectlombok:lombok:1.18.12' // with version number
+	// annotationProcessor 'org.projectlombok:lombok' // without version number
+	annotationProcessor 'org.projectlombok:lombok:1.18.12' // with version number
 	testCompileOnly 'org.projectlombok:lombok:1.18.12'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+	// New - 12.07.2020
+	compile('org.springframework.boot:spring-boot-starter-web')
+	// compile('org.projectlombok:lombok') // without version number
+	compile('org.projectlombok:lombok:1.18.12') // with version number
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('mysql:mysql-connector-java')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }
 
