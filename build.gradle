@@ -1,13 +1,15 @@
 
 buildscript {
 	ext {
-		springBootVersion = '2.0.5.RELEASE'
+		// springBootVersion = '2.0.5.RELEASE'
+		springBootVersion = '2.3.1.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		// classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
 	}
 }
 
@@ -21,10 +23,11 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
 group = 'com.crud'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
@@ -51,7 +54,12 @@ dependencies {
 	compile('org.projectlombok:lombok:1.18.12') // with version number
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('mysql:mysql-connector-java')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	// The testCompile configuration has been deprecated for dependency declaration. Please use the testImplementation configuration instead (...)
+	// testCompile('org.springframework.boot:spring-boot-starter-test')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+	// New - 07.08.2020
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 
 }
 

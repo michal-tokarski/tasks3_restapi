@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
@@ -20,8 +21,8 @@ public class TaskController {
     private TaskMapper taskMapper;
 
     // Retrieve all Tasks (database)
-    @RequestMapping(method = RequestMethod.GET, value = "getAllTasks")
-    public List<TaskDto> getAllTasks() {
+    @RequestMapping(method = RequestMethod.GET, value = "getTasks")
+    public List<TaskDto> getTasks() {
 
         return taskMapper.mapTaskDtoList(dbService.getAllTasks());
 
