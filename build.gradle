@@ -24,7 +24,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-// for Local (uncommented) or Tomcat (commented) :
+// for Local (uncommented) or Heroku (commented) :
 // apply plugin: 'war'
 
 group = 'com.crud'
