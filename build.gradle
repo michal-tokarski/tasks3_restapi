@@ -1,9 +1,10 @@
 
+// 1. Buildscript :
+// -------------------
 buildscript {
 	ext {
 		// springBootVersion = '2.0.5.RELEASE'
 		springBootVersion = '2.3.1.RELEASE'
-
 	}
 	repositories {
 		mavenCentral()
@@ -14,43 +15,54 @@ buildscript {
 	}
 }
 
+// 2. Plugins :
+// -------------------
 plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-// for Local (uncommented) or Heroku (commented) :
-// apply plugin: 'war'
+apply plugin: 'war' // for Local : uncommented
+// apply plugin: 'war' // for Heroku : commented
 
+// 3. Crud variables :
+// -------------------
 group = 'com.crud'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+// 4. Maven :
+// -------------------
 repositories {
 	mavenCentral()
 }
 
+// 5. Dependencies :
+// -------------------
 dependencies {
 
 	// A. Spring-boot-starter-web :
+	// -------------------------------
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile('org.springframework.boot:spring-boot-starter-web')
 
 	// B. Spring-boot-starter-test :
+	// -------------------------------
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'}
 	// testCompile('org.springframework.boot:spring-boot-starter-test') // deprecated
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 
 	// C. Spring-boot-starter-data :
+	// -------------------------------
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 
-	// D. Lombok :
+	// D. Lombok (getters setters builder) :
+	// ---------------------------------------
 	// compileOnly 'org.projectlombok:lombok' // (without version number)
 	// annotationProcessor 'org.projectlombok:lombok' // (without version number)
 	// compile('org.projectlombok:lombok') // (without version number)
@@ -60,15 +72,24 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12' // (with version number)
 	compile('org.projectlombok:lombok:1.18.12') // (with version number)
 
-	// E. DB connector :
-	// compile('mysql:mysql-connector-java') // for Tomcat
-	compile('org.postgresql:postgresql') // for Heroku
+	// E. Database connector :
+	// -------------------------
+	compile('mysql:mysql-connector-java') // for Local
+	// compile('org.postgresql:postgresql') // for Heroku
 
 	// F. Spring-boot-starter-tomcat :
-	// providedRuntime("org.springframework.boot:spring-boot-starter-tomcat") // for Tomcat
+	// ---------------------------------
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat") // for Local
+
+	// G. Swagger (documentation) :
+	// -------------------------------
+	compile('io.springfox:springfox-swagger2:2.7.0')
+	compile('io.springfox:springfox-swagger-ui:2.7.0')
 
 }
 
+// 6. Tests :
+// -------------------
 test {
 	useJUnitPlatform()
 }
