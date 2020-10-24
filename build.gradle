@@ -29,7 +29,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war' // for Local : uncommented
 // apply plugin: 'war' // for Heroku : commented
 
-// 3. Crud variables :
+// 3. Project variables :
 // -------------------
 group = 'com.crud'
 version = '0.0.1-SNAPSHOT'
@@ -45,51 +45,43 @@ repositories {
 // -------------------
 dependencies {
 
-	// A. Spring-boot-starter-web :
-	// -------------------------------
+	// A. Spring-boot-starter :
+	// --------------------------
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile('org.springframework.boot:spring-boot-starter-web')
-
-	// B. Spring-boot-starter-test :
-	// -------------------------------
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'}
 	// testCompile('org.springframework.boot:spring-boot-starter-test') // deprecated
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
-
-	// C. Spring-boot-starter-data :
-	// -------------------------------
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat") // for Local
+	compile('org.springframework.boot:spring-boot-starter-mail:2.2.2.RELEASE')
 
-	// D. Lombok (getters setters builder) :
+	// B. Lombok (getters setters builder) :
 	// ---------------------------------------
-	// compileOnly 'org.projectlombok:lombok' // (without version number)
-	// annotationProcessor 'org.projectlombok:lombok' // (without version number)
-	// compile('org.projectlombok:lombok') // (without version number)
-	compileOnly 'org.projectlombok:lombok:1.18.12' // (with version number)
-	annotationProcessor 'org.projectlombok:lombok:1.18.12' // (with version number)
-	testCompileOnly 'org.projectlombok:lombok:1.18.12' // (with version number)
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12' // (with version number)
-	compile('org.projectlombok:lombok:1.18.12') // (with version number)
+	// compileOnly 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok:1.18.12'
+	// annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok:1.18.12'
+	testCompileOnly 'org.projectlombok:lombok:1.18.12'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+	// compile('org.projectlombok:lombok')
+	compile('org.projectlombok:lombok:1.18.12')
 
-	// E. Database connector :
-	// -------------------------
+	// C. MySQL / PostgreSQL :
+	// --------------------------
 	compile('mysql:mysql-connector-java') // for Local
 	// compile('org.postgresql:postgresql') // for Heroku
 
-	// F. Spring-boot-starter-tomcat :
-	// ---------------------------------
-	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat") // for Local
-
-	// G. Swagger (documentation) :
+	// D. Swagger (documentation) :
 	// -------------------------------
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
 
 }
 
-// 6. Tests :
-// -------------------
+// 6. Test environment :
+// -----------------------
 test {
 	useJUnitPlatform()
 }
