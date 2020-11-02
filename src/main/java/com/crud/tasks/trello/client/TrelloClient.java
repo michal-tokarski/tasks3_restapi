@@ -24,7 +24,8 @@ public class TrelloClient {
     private final static Logger LOGGER = LoggerFactory.getLogger(TrelloClient.class);
 
     /*
-    Original version, moved later to TrelloConfig class :
+    // Original version, moved later to TrelloConfig class :
+    // -------------------------------------------------------
     @Value("${trello.api.endpoint.prod}")
     private String trelloApiEndpoint;
     @Value("${trello.app.key}")
