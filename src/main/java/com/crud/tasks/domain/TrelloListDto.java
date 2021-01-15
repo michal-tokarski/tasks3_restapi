@@ -26,4 +26,12 @@ public class TrelloListDto {
     public TrelloListDto() {}
     */
 
+    @Override
+    public String toString() {
+        return "TrelloListDto {" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", isClosed=" + isClosed +
+                '}';
+    }
 }

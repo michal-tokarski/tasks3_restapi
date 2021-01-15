@@ -1,34 +1,24 @@
-
 package com.crud.tasks.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class TrelloCardDto {
+public class TrelloCard {
 
-    @JsonProperty("name")
     private String name;
-
-    @JsonProperty("desc")
     private String description;
-
-    @JsonProperty("pos")
     private String pos;
-
-    @JsonProperty("idList")
     private String listId;
 
     @Override
     public String toString() {
-        return "TrelloCardDto {" +
+        return "TrelloCard {" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", pos='" + pos + '\'' +
                 ", listId='" + listId + '\'' +
                 '}';
     }
-
 }

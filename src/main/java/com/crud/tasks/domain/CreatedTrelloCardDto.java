@@ -7,11 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
-public class CreatedTrelloCard {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CreatedTrelloCardDto {
 
     @JsonProperty("id")
     private String id;

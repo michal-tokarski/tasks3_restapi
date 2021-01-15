@@ -1,9 +1,10 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.service.TrelloService;
+import com.crud.tasks.trello.facade.TrelloFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +16,9 @@ import java.util.List;
 public class TrelloController {
 
     @Autowired
-    // private TrelloClient trelloClient; // (trelloClient replaced by trelloService)
-    private TrelloService trelloService;
+    /* private TrelloClient trelloClient; // (trelloClient replaced by trelloService) */
+    /* private TrelloService trelloService; // (trelloService replaced by trelloFacade) */
+    private TrelloFacade trelloFacade;
 
     // 1st version
     /*
@@ -45,16 +47,26 @@ public class TrelloController {
      */
 
     // 2nd version
-    @RequestMapping(method = RequestMethod.GET, value = "/getTrelloBoards")
+    @RequestMapping
+        (method = RequestMethod.GET, value = "/getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
+
         /* return trelloClient.getTrelloBoards(); // (trelloClient replaced by trelloService) */
-        return trelloService.fetchTrelloBoards();
+        /* return trelloService.fetchTrelloBoards(); */
+
+        return trelloFacade.fetchTrelloBoards();
+
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/createTrelloCard")
-    public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+    @RequestMapping
+        (method = RequestMethod.POST, value = "/createTrelloCard")
+    public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+
         /* return trelloClient.createNewCard(trelloCardDto); // (trelloClient replaced by trelloService) */
-        return trelloService.createTrelloCard(trelloCardDto);
+        /* return trelloService.createTrelloCard(trelloCardDto); */
+
+        return trelloFacade.createCard(trelloCardDto);
+
     }
 
 }
