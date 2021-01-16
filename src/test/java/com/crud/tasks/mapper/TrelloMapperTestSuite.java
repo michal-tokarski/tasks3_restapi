@@ -35,23 +35,21 @@ public class TrelloMapperTestSuite {
 
         // Then
         System.out.println("\n");
-        System.out.println("Test : " + "test1_MapToBoards_ListOfBoardDto_To_ListOfBoard()");
-        System.out.println("---------------------------");
+        System.out.println(new Object () {}.getClass().getEnclosingMethod().getName());
+        System.out.println("-----------------------------------------------------");
         System.out.println("listOfTrelloBoardDtos" + " :");
         listOfTrelloBoardDtos.forEach(System.out::println);
-        System.out.println("---------------------------");
         System.out.println("mappedListOfTrelloBoards" + " :");
         mappedListOfTrelloBoards.forEach(System.out::println);
-        System.out.println("---------------------------");
 
-        int count = 0;
-        while (listOfTrelloBoardDtos.size() > count) {
+        // Then : Assert #1 :
+        for (int count=0 ; count < listOfTrelloBoardDtos.size() ; count++) {
             assertEquals (listOfTrelloBoardDtos.get(count).getId(), mappedListOfTrelloBoards.get(count).getId());
             assertEquals (listOfTrelloBoardDtos.get(count).getName(), mappedListOfTrelloBoards.get(count).getName());
             assertEquals (listOfTrelloBoardDtos.get(count).getLists(), mappedListOfTrelloBoards.get(count).getLists());
-            count++;
         }
 
+        // Then : Assert #2 :
         assertEquals(listOfTrelloBoardDtos.size(), mappedListOfTrelloBoards.size());
 
     }
@@ -72,23 +70,21 @@ public class TrelloMapperTestSuite {
 
         // Then
         System.out.println("\n");
-        System.out.println("Test : " + "test2_MapToBoardsDto_ListOfBoard_To_ListOfBoardDto()");
-        System.out.println("---------------------------");
+        System.out.println(new Object () {}.getClass().getEnclosingMethod().getName());
+        System.out.println("-----------------------------------------------------");
         System.out.println("listOfTrelloBoards" + " :");
         listOfTrelloBoards.forEach(System.out::println);
-        System.out.println("---------------------------");
         System.out.println("mappedListOfTrelloBoardDtos" + " :");
         mappedListOfTrelloBoardDtos.forEach(System.out::println);
-        System.out.println("---------------------------");
 
-        int count = 0;
-        while (listOfTrelloBoards.size() > count) {
+        // Then : Assert #1 :
+        for (int count=0 ; count < listOfTrelloBoards.size() ; count++) {
             assertEquals (listOfTrelloBoards.get(count).getId(), mappedListOfTrelloBoardDtos.get(count).getId());
             assertEquals (listOfTrelloBoards.get(count).getName(), mappedListOfTrelloBoardDtos.get(count).getName());
             assertEquals (listOfTrelloBoards.get(count).getLists(), mappedListOfTrelloBoardDtos.get(count).getLists());
-            count++;
         }
 
+        // Then : Assert #2 :
         assertEquals(listOfTrelloBoards.size(), mappedListOfTrelloBoardDtos.size());
 
     }
@@ -109,23 +105,21 @@ public class TrelloMapperTestSuite {
 
         // Then
         System.out.println("\n");
-        System.out.println("Test : " + "test3_MapToList_ListOfListDto_To_ListOfList()");
-        System.out.println("---------------------------");
+        System.out.println(new Object () {}.getClass().getEnclosingMethod().getName());
+        System.out.println("-----------------------------------------------------");
         System.out.println("listOfTrelloListDtos" + " :");
         listOfTrelloListDtos.forEach(System.out::println);
-        System.out.println("---------------------------");
         System.out.println("mappedListOfTrelloLists" + " :");
         mappedListOfTrelloLists.forEach(System.out::println);
-        System.out.println("---------------------------");
 
-        int count = 0;
-        while (listOfTrelloListDtos.size() > count) {
+        // Then : Assert #1 :
+        for (int count=0 ; count < listOfTrelloListDtos.size() ; count++) {
             assertEquals (listOfTrelloListDtos.get(count).getId(), mappedListOfTrelloLists.get(count).getId());
             assertEquals (listOfTrelloListDtos.get(count).getName(), mappedListOfTrelloLists.get(count).getName());
             assertEquals (listOfTrelloListDtos.get(count).isClosed(), mappedListOfTrelloLists.get(count).isClosed());
-            count++;
         }
 
+        // Then : Assert #2 :
         assertEquals(listOfTrelloListDtos.size(), mappedListOfTrelloLists.size());
 
     }
@@ -146,23 +140,21 @@ public class TrelloMapperTestSuite {
 
         // Then
         System.out.println("\n");
-        System.out.println("Test : " + "test4_MapToListDto_ListOfList_To_ListOfListDto()");
-        System.out.println("---------------------------");
+        System.out.println(new Object () {}.getClass().getEnclosingMethod().getName());
+        System.out.println("-----------------------------------------------------");
         System.out.println("listOfTrelloLists" + " :");
         listOfTrelloLists.forEach(System.out::println);
-        System.out.println("---------------------------");
         System.out.println("mappedListOfTrelloListDtos" + " :");
         mappedListOfTrelloListDtos.forEach(System.out::println);
-        System.out.println("---------------------------");
 
-        int count = 0;
-        while (listOfTrelloLists.size() > count) {
+        // Then : Assert #1 :
+        for (int count=0 ; count < listOfTrelloLists.size() ; count++) {
             assertEquals (listOfTrelloLists.get(count).getId(), mappedListOfTrelloListDtos.get(count).getId());
             assertEquals (listOfTrelloLists.get(count).getName(), mappedListOfTrelloListDtos.get(count).getName());
             assertEquals (listOfTrelloLists.get(count).isClosed(), mappedListOfTrelloListDtos.get(count).isClosed());
-            count++;
         }
 
+        // Then : Assert #2 :
         assertEquals(listOfTrelloLists.size(), mappedListOfTrelloListDtos.size());
 
     }
@@ -185,32 +177,23 @@ public class TrelloMapperTestSuite {
 
         // Then
         System.out.println("\n");
-        System.out.println("Test : " + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         System.out.println(new Object () {}.getClass().getEnclosingMethod().getName());
-        System.out.println("---------------------------");
+        System.out.println("-----------------------------------------------------");
         System.out.println("listOfTrelloCards" + " :");
         listOfTrelloCards.forEach(System.out::println);
-        System.out.println("---------------------------");
         System.out.println("mappedListOfTrelloCardDtos" + " :");
         mappedListOfTrelloCardDtos.forEach(System.out::println);
-        System.out.println("---------------------------");
 
-        int count = 0;
-        while (listOfTrelloCards.size() > count) {
-            assertEquals (listOfTrelloCards.get(count).getName(), mappedListOfTrelloCardDtos.get(count).getName());
-            assertEquals (listOfTrelloCards.get(count).getDescription(), mappedListOfTrelloCardDtos.get(count).getDescription());
-            assertEquals (listOfTrelloCards.get(count).getPos(), mappedListOfTrelloCardDtos.get(count).getPos());
-            assertEquals (listOfTrelloCards.get(count).getListId(), mappedListOfTrelloCardDtos.get(count).getListId());
-            count++;
-        }
-
-        for (count=0 ; count < listOfTrelloCards.size() ; count++) {
+        // Then : Assert #1
+        for (int count=0 ; count < listOfTrelloCards.size() ; count++) {
             assertEquals (listOfTrelloCards.get(count).getName(), mappedListOfTrelloCardDtos.get(count).getName());
             assertEquals (listOfTrelloCards.get(count).getDescription(), mappedListOfTrelloCardDtos.get(count).getDescription());
             assertEquals (listOfTrelloCards.get(count).getPos(), mappedListOfTrelloCardDtos.get(count).getPos());
             assertEquals (listOfTrelloCards.get(count).getListId(), mappedListOfTrelloCardDtos.get(count).getListId());
         }
 
+        // Then : Assert #2
+        assertEquals(listOfTrelloCards.size(), mappedListOfTrelloCardDtos.size());
 
     }
 
@@ -232,23 +215,23 @@ public class TrelloMapperTestSuite {
 
         // Then
         System.out.println("\n");
-        System.out.println("Test : " + "test6_MapToCard_CardDto_To_Card()");
-        System.out.println("---------------------------");
+        System.out.println(new Object () {}.getClass().getEnclosingMethod().getName());
+        System.out.println("-----------------------------------------------------");
         System.out.println("listOfTrelloCardDtos" + " :");
         listOfTrelloCardDtos.forEach(System.out::println);
-        System.out.println("---------------------------");
         System.out.println("mappedListOfTrelloCards" + " :");
         mappedListOfTrelloCards.forEach(System.out::println);
-        System.out.println("---------------------------");
 
-        int count = 0;
-        while (listOfTrelloCardDtos.size() > count) {
+        // Then : Assert #1
+        for (int count=0 ; count < listOfTrelloCardDtos.size() ; count++) {
             assertEquals (listOfTrelloCardDtos.get(count).getName(), mappedListOfTrelloCards.get(count).getName());
             assertEquals (listOfTrelloCardDtos.get(count).getDescription(), mappedListOfTrelloCards.get(count).getDescription());
             assertEquals (listOfTrelloCardDtos.get(count).getPos(), mappedListOfTrelloCards.get(count).getPos());
             assertEquals (listOfTrelloCardDtos.get(count).getListId(), mappedListOfTrelloCards.get(count).getListId());
-            count++;
         }
+
+        // Then : Assert #2
+        assertEquals(listOfTrelloCardDtos.size(), mappedListOfTrelloCards.size());
 
     }
 
