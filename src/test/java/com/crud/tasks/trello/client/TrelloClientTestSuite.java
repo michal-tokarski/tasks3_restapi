@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 // @ExtendWith(MockitoExtension.class)
 @SpringBootTest
-class TrelloClientTest {
+class TrelloClientTestSuite {
 
     @InjectMocks
     private TrelloClient trelloClient;
@@ -39,7 +39,7 @@ class TrelloClientTest {
     }
 
     @Test
-    public void shouldFetchTrelloBoards() throws URISyntaxException {
+    public void test1_FetchTrelloBoards() throws URISyntaxException {
 
         // Given
         TrelloBoardDto[] trelloBoards = new TrelloBoardDto[1];
@@ -60,7 +60,7 @@ class TrelloClientTest {
     }
 
     @Test
-    public void shouldCreateCard() throws URISyntaxException {
+    public void test2_CreateCard() throws URISyntaxException {
 
         // Given
         TrelloCardDto trelloCardDto = new TrelloCardDto(
@@ -91,7 +91,7 @@ class TrelloClientTest {
     }
 
     @Test
-    public void shouldReturnEmptyList() throws URISyntaxException {
+    public void test3_ReturnEmptyList() throws URISyntaxException {
 
         //Given
         URI uri = new URI("http://test.com/members/michaltokarski2/boards?key=test&token=test&fields=name,id&lists=all");
