@@ -50,7 +50,7 @@ public class TrelloValidatorTestSuite {
         listAppender.start();
 
         // Add the appender to the logger
-        LOGGER.addAppender(listAppender); // <=== addAppender swieci sie na czerwono (nie mozna dodac) !
+        LOGGER.addAppender(listAppender); // <=== addAppender not working !!!
 
         // Given
         TrelloCard trelloCard_test = new TrelloCard("TrelloCard test", "Description","top", "01");

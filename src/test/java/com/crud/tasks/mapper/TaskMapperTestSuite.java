@@ -28,31 +28,26 @@ public class TaskMapperTestSuite {
     @InjectMocks
     private TaskMapper taskMapper;
 
-    @Autowired
     private Task task1, task2;
-
-    @Autowired
     private TaskDto taskDto1, taskDto2;
 
-
-    /* commented out for the moment
     @Before
     public void init() {
 
-        Task task1 = new Task(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
-        Task task2 = new Task(2L, "Paint the walls", "Paint the walls on 2nd floor");
-        TaskDto taskDto1 = new TaskDto(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
-        TaskDto taskDto2 = new TaskDto(2L, "Paint the walls", "Paint the walls on 2nd floor");
+        task1 = new Task(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
+        task2 = new Task(2L, "Paint the walls", "Paint the walls on 2nd floor");
+        taskDto1 = new TaskDto(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
+        taskDto2 = new TaskDto(2L, "Paint the walls", "Paint the walls on 2nd floor");
 
     }
-    */
+
 
     @Test
     public void test1_mapToTask() {
 
         // Given
-        Task task1 = new Task(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
-        TaskDto taskDto1 = new TaskDto(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
+        // Task task1 = new Task(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
+        // TaskDto taskDto1 = new TaskDto(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
 
         // When
         Task resultTask = taskMapper.mapToTask(taskDto1);
@@ -68,8 +63,8 @@ public class TaskMapperTestSuite {
     public void test2_mapToTaskDto() {
 
         // Given
-        Task task2 = new Task(2L, "Paint the walls", "Paint the walls on 2nd floor");
-        TaskDto taskDto2 = new TaskDto(2L, "Paint the walls", "Paint the walls on 2nd floor");
+        // Task task2 = new Task(2L, "Paint the walls", "Paint the walls on 2nd floor");
+        // TaskDto taskDto2 = new TaskDto(2L, "Paint the walls", "Paint the walls on 2nd floor");
 
         // When
         TaskDto resultTaskDto = taskMapper.mapToTaskDto(task2);
@@ -85,14 +80,15 @@ public class TaskMapperTestSuite {
     public void test3_mapTaskDtoList() {
 
         // Given
-        Task task1 = new Task(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
-        Task task2 = new Task(2L, "Paint the walls", "Paint the walls on 2nd floor");
+        // Task task1 = new Task(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
+        // Task task2 = new Task(2L, "Paint the walls", "Paint the walls on 2nd floor");
         List<Task> taskList = new ArrayList<>();
         taskList.add(task1);
         taskList.add(task2);
 
-        TaskDto taskDto1 = new TaskDto(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
-        TaskDto taskDto2 = new TaskDto(2L, "Paint the walls", "Paint the walls on 2nd floor");
+        // Given
+        // TaskDto taskDto1 = new TaskDto(1L, "Fix the car", "Clutch in Nissan BRZ is not working");
+        // TaskDto taskDto2 = new TaskDto(2L, "Paint the walls", "Paint the walls on 2nd floor");
         List<TaskDto> taskListDto = new ArrayList<>();
         taskListDto.add(taskDto1);
         taskListDto.add(taskDto2);
