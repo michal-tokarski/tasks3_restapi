@@ -45,7 +45,7 @@ repositories {
 // -------------------
 dependencies {
 
-	// Spring-boot-starter :
+	// Spring framework basics :
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		compile('org.springframework.boot:spring-boot-starter-web')
 		testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -56,7 +56,7 @@ dependencies {
 		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat") // for Local
 		compile('org.springframework.boot:spring-boot-starter-mail:2.2.2.RELEASE')
 
-	// Lombok (getters setters builder) :
+	// Lombok (automatic builder of getters and setters) :
 		// compileOnly 'org.projectlombok:lombok'
 		compileOnly 'org.projectlombok:lombok:1.18.12'
 		// annotationProcessor 'org.projectlombok:lombok'
@@ -66,21 +66,21 @@ dependencies {
 		// compile('org.projectlombok:lombok')
 		compile('org.projectlombok:lombok:1.18.12')
 
-	// MySQL / PostgreSQL :
+	// Databases (MySQL / PostgreSQL) :
 		compile('mysql:mysql-connector-java') // for Local
 		// compile('org.postgresql:postgresql') // for Heroku
 
-	// Swagger (documentation) :
+	// Swagger (documentation features) :
 		compile('io.springfox:springfox-swagger2:2.7.0')
 		compile('io.springfox:springfox-swagger-ui:2.7.0')
 
-	// GSON (Google library for transforming objects to JSON and vice versa) :
+	// GSON (Google library for transforming Objects to JSON and vice versa) :
 		compile('com.google.code.gson:gson:2.8.2')
 
-	// Actuator (extra API endpoints) :
+	// Actuator (additional API endpoints) :
 		compile("org.springframework.boot:spring-boot-starter-actuator")
 
-	// Thymeleaf (mail templates) :
+	// Thymeleaf (professional mail templates) :
 		compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
 }
