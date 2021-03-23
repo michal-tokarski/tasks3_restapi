@@ -27,7 +27,8 @@ public class MailCreatorService {
         Context context = new Context();
 
         context.setVariable("message", message);
-        context.setVariable("tasks_url", "http://localhost:8080/tasks_frontend");
+        // context.setVariable("tasks_url", "http://localhost:8080/tasks_frontend");
+        context.setVariable("tasks_url", "http://localhost/tasks_frontend");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
 
