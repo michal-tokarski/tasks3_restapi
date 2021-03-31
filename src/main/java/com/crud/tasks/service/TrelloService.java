@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.crud.tasks.service.MailTemplate.MAIL_TEMPLATE__CREATED_TRELLO_CARD_MAIL;
+
 @Service
 public class TrelloService {
 
@@ -39,7 +41,8 @@ public class TrelloService {
                 new Mail(
                     adminConfig.getAdminMail(),
                     SUBJECT,
-                    "New card:" + " [ " + newCard.getName() + " ] " + "has been created on your Trello account."
+                    "New card:" + " [ " + newCard.getName() + " ] " + "has been created on your Trello account.",
+                    MAIL_TEMPLATE__CREATED_TRELLO_CARD_MAIL
                 )
             )
         );

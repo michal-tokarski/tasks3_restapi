@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Optional;
 
 @Service
@@ -24,34 +25,43 @@ public class SimpleEmailService {
     @Autowired
     private MailCreatorService mailCreatorService;
 
+
     public void send(final Mail mail) {
 
         LOGGER.info("Starting email preparation ...");
 
         try {
-            /* replaced by MimeMessage
-            SimpleMailMessage mailMessage = createMailMessage(mail);
-            javaMailSender.send(mailMessage);
-            javaMailSender.send(createMailMessage(mail));
-             */
             javaMailSender.send(createMimeMessage(mail));
             LOGGER.info("Email has been sent.");
         } catch (MailException e) {
             LOGGER.error("Failed  to process email sending: [{}] ", e.getMessage(), e);
         }
+
     }
+
 
     private MimeMessagePreparator createMimeMessage(final Mail mail) {
 
         return mimeMessage -> {
+
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
-            messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+
+            switch (mail.getMailTemplate()) {
+                case MAIL_TEMPLATE__CREATED_TRELLO_CARD_MAIL :
+                    messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+                    break;
+                case MAIL_TEMPLATE__NUMBER_OF_TASKS_IN_REPOSITORY_MAIL :
+                    messageHelper.setText(mailCreatorService.buildNumberOfTasksInRepositoryEmail(mail.getMessage()), true);
+                    break;
+            }
+
         };
 
     }
 
+    // method replaced by createMimeMessage(final Mail mail)
     private SimpleMailMessage createMailMessage (final Mail mail){
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -65,7 +75,6 @@ public class SimpleEmailService {
         return mailMessage;
 
     }
-
 
 }
 
