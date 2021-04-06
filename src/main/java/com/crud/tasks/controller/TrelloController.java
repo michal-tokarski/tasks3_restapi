@@ -16,54 +16,19 @@ import java.util.List;
 public class TrelloController {
 
     @Autowired
-    /* private TrelloClient trelloClient; // (trelloClient replaced by trelloService) */
-    /* private TrelloService trelloService; // (trelloService replaced by trelloFacade) */
     private TrelloFacade trelloFacade;
 
-    // 1st version
-    /*
-    @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public void getTrelloBoards() {
-
-        // GET request
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-
-        trelloBoards = trelloBoards.stream()
-            .filter(trelloBoardDto -> trelloBoardDto.getId() != null)
-            .filter(trelloBoardDto -> trelloBoardDto.getName() != null)
-            // .filter(Objects::nonNull)
-            // .filter(trelloBoardDto -> trelloBoardDto.getName().contains("Kodilla"))
-            .collect(Collectors.toList());
-
-        trelloBoards.forEach(trelloBoardDto -> {
-            System.out.println(trelloBoardDto.getName() + " - " + trelloBoardDto.getId());
-
-            System.out.println("This board contains lists:");
-            trelloBoardDto.getLists().forEach(trelloList ->
-                System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
-        });
-
-    }
-     */
-
-    // 2nd version
-    @RequestMapping
-        (method = RequestMethod.GET, value = "/getTrelloBoards")
+    // @RequestMapping (method = RequestMethod.GET, value = "/getTrelloBoards")     // --- previous version ---
+    @RequestMapping (method = RequestMethod.GET, value = "/boards")              // --- endpoint refactoring ---
     public List<TrelloBoardDto> getTrelloBoards() {
-
-        /* return trelloClient.getTrelloBoards(); // (trelloClient replaced by trelloService) */
-        /* return trelloService.fetchTrelloBoards(); */
 
         return trelloFacade.fetchTrelloBoards();
 
     }
 
-    @RequestMapping
-        (method = RequestMethod.POST, value = "/createTrelloCard")
+    // @RequestMapping (method = RequestMethod.POST, value = "/createTrelloCard")   // --- previous version ---
+    @RequestMapping (method = RequestMethod.POST, value = "/cards")              // --- endpoint refactoring ---
     public CreatedTrelloCardDto createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-
-        /* return trelloClient.createNewCard(trelloCardDto); // (trelloClient replaced by trelloService) */
-        /* return trelloService.createTrelloCard(trelloCardDto); */
 
         return trelloFacade.createCard(trelloCardDto);
 

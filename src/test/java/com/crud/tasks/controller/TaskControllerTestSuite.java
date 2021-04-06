@@ -5,12 +5,9 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import com.google.gson.Gson;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -25,20 +22,22 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static java.util.Optional.ofNullable;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TaskController.class)
 public class TaskControllerTestSuite {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private DbService dbService;
+
+    @MockBean
+    private TaskMapper taskMapper;
 
     public Task task1 = new Task (1L,"task1","content1");
     public Task task2 = new Task (2L,"task2","content2");
@@ -49,16 +48,6 @@ public class TaskControllerTestSuite {
     public TaskDto taskDto3 = new TaskDto (3L,"task3","content3");
 
     public Gson gson = new Gson();
-
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private DbService dbService;
-
-    @MockBean
-    private TaskMapper taskMapper;
 
 
     @Test
@@ -73,13 +62,14 @@ public class TaskControllerTestSuite {
         when(taskMapper.mapTaskDtoList(tasks)).thenReturn(tasksDto);
 
         // When
-        mockMvc.perform(get("/v1/task/getTasks")
-                .contentType(MediaType.APPLICATION_JSON))
-
+        mockMvc
+            //.perform(get("/v1/task/getTasks")      // --- previous version ---
+            .perform(get("/v1/tasks/")     // --- endpoint refactoring ---
+                .contentType(MediaType.APPLICATION_JSON)
+            )
                 // Then
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(tasksDto.size())))
-
         ;
 
     }
@@ -98,9 +88,11 @@ public class TaskControllerTestSuite {
         when(taskMapper.mapTaskDtoList(tasks)).thenReturn(tasksDto);
 
         // When
-        mockMvc.perform(get("/v1/task/getTasks")
-                .contentType(MediaType.APPLICATION_JSON))
-
+        mockMvc
+            //.perform(get("/v1/task/getTasks")      // --- previous version ---
+            .perform(get("/v1/tasks/")     // --- endpoint refactoring ---
+                .contentType(MediaType.APPLICATION_JSON)
+            )
                 // Then #1
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(tasksDto.size())))
@@ -114,10 +106,10 @@ public class TaskControllerTestSuite {
                 .andExpect(jsonPath("$[2].id",      is((tasks.get(2).getId()).intValue())))
                 .andExpect(jsonPath("$[2].title",   is(tasks.get(2).getTitle())))
                 .andExpect(jsonPath("$[2].content", is(tasks.get(2).getContent())))
-
         ;
 
     }
+
 
     @Test
     // tested method : public TaskDto getTask (@RequestParam Long taskId)
@@ -127,18 +119,22 @@ public class TaskControllerTestSuite {
         when(dbService.getTaskById(task1.getId())).thenReturn(Optional.of(task1));
         when(taskMapper.mapToTaskDto(task1)).thenReturn(taskDto1);
 
-        // When
-        mockMvc.perform(get("/v1/task/getTask")
-                .contentType(MediaType.APPLICATION_JSON)
-                .param("taskId", String.valueOf(task1.getId())))
+        String jsonContent = gson.toJson(task1);
 
+        // When
+        mockMvc
+            //.perform(get("/v1/task/getTask")        // --- previous version ---
+            .perform(get("/v1/tasks/1")     // --- endpoint refactoring ---
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("taskId", String.valueOf(task1.getId()))
+                .content(jsonContent)
+            )
                 // Then #1
                 .andExpect(status().isOk())
                 // Then #2
                 .andExpect(jsonPath("$.id", is(task1.getId().intValue())))
                 .andExpect(jsonPath("$.title", is(task1.getTitle())))
                 .andExpect(jsonPath("$.content", is(task1.getContent())))
-
         ;
 
     }
@@ -150,14 +146,16 @@ public class TaskControllerTestSuite {
         // Given
 
         // When
-        mockMvc.perform(delete("/v1/task/deleteTask")
-                .param("taskId", String.valueOf(task1.getId())))
-
+        mockMvc
+            //.perform(delete("/v1/task/deleteTask")      // --- previous version ---
+            .perform(delete("/v1/tasks/1")        // --- endpoint refactoring ---
+                .param("taskId", String.valueOf(task1.getId()))
+            )
                 // Then
                 .andExpect(status().isOk())
         ;
 
-        verify(dbService,times(1)).deleteTaskById(task1.getId());
+        verify(dbService, times(1)).deleteTaskById(task1.getId());
 
     }
 
@@ -173,17 +171,19 @@ public class TaskControllerTestSuite {
         String jsonContent = gson.toJson(task1);
 
         // When
-        mockMvc.perform(put("/v1/task/updateTask")
+        mockMvc
+            .perform(
+                // put("/v1/task/updateTask")      // --- previous version ---
+                put("/v1/tasks")         // --- endpoint refactoring ---
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonContent))
-
+                .content(jsonContent)
+            )
                 // Then #1
                 .andExpect(status().isOk())
                 // Then #2
                 .andExpect(jsonPath("$.id", is(taskDto1.getId().intValue())))
                 .andExpect(jsonPath("$.title", is(taskDto1.getTitle())))
                 .andExpect(jsonPath("$.content", is(taskDto1.getContent())))
-
         ;
 
     }
@@ -200,13 +200,15 @@ public class TaskControllerTestSuite {
         String jsonContent = gson.toJson(task1);
 
         // When
-        mockMvc.perform(post("/v1/task/createTask")
+        mockMvc
+            .perform(
+                // post("/v1/task/createTask")        // --- previous version ---
+                post("/v1/tasks")           // --- endpoint refactoring ---
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonContent))
-
+                .content(jsonContent)
+            )
                 // Then
                 .andExpect(status().isOk())
-
         ;
 
     }
