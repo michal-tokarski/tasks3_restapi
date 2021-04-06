@@ -126,7 +126,8 @@ public class TaskControllerTestSuite {
             //.perform(get("/v1/task/getTask")        // --- previous version ---
             .perform(get("/v1/tasks/1")     // --- endpoint refactoring ---
                 .contentType(MediaType.APPLICATION_JSON)
-                .param("taskId", String.valueOf(task1.getId()))
+                // .param("taskId", String.valueOf(task1.getId()))
+                // .param("taskId", "1")
                 .content(jsonContent)
             )
                 // Then #1
@@ -149,7 +150,7 @@ public class TaskControllerTestSuite {
         mockMvc
             //.perform(delete("/v1/task/deleteTask")      // --- previous version ---
             .perform(delete("/v1/tasks/1")        // --- endpoint refactoring ---
-                .param("taskId", String.valueOf(task1.getId()))
+                //.param("taskId", String.valueOf(task1.getId()))
             )
                 // Then
                 .andExpect(status().isOk())
