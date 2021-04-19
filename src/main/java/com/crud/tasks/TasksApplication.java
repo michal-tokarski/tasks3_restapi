@@ -6,7 +6,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 // for Local
-/*
 @SpringBootApplication
 public class TasksApplication extends SpringBootServletInitializer {
 
@@ -20,10 +19,10 @@ public class TasksApplication extends SpringBootServletInitializer {
 	}
 
 }
-*/
+
 
 // for Heroku
-// /*
+/*
 @SpringBootApplication
 public class TasksApplication {
 

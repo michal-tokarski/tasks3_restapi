@@ -26,7 +26,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-// apply plugin: 'war' // --- for Local ---
+apply plugin: 'war' // --- for Local ---
 
 // 3. Project variables :
 // -------------------
@@ -44,7 +44,7 @@ repositories {
 // -------------------
 dependencies {
 
-	// Spring framework basics :
+	// Spring basics :
 		implementation 'org.springframework.boot:spring-boot-starter-web'
 		compile('org.springframework.boot:spring-boot-starter-web')
 		testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -52,10 +52,11 @@ dependencies {
 		// testCompile('org.springframework.boot:spring-boot-starter-test') // deprecated
 		testImplementation('org.springframework.boot:spring-boot-starter-test')
 		compile('org.springframework.boot:spring-boot-starter-data-jpa')
-		// providedRuntime("org.springframework.boot:spring-boot-starter-tomcat") // --- for Local ---
+		providedRuntime("org.springframework.boot:spring-boot-starter-tomcat") // --- for Local ---
 		compile('org.springframework.boot:spring-boot-starter-mail:2.2.2.RELEASE')
 
-	// Lombok (automatic builder of getters and setters) :
+	// Lombok :
+	// (automatic builder of getters and setters)
 		// compileOnly 'org.projectlombok:lombok'
 		compileOnly 'org.projectlombok:lombok:1.18.12'
 		// annotationProcessor 'org.projectlombok:lombok'
@@ -65,21 +66,26 @@ dependencies {
 		// compile('org.projectlombok:lombok')
 		compile('org.projectlombok:lombok:1.18.12')
 
-	// Databases (MySQL / PostgreSQL) :
-		// compile('mysql:mysql-connector-java') // --- for Local ---
-		compile('org.postgresql:postgresql') // --- for Heroku ---
+	// Database :
+	// (Local : MySQL / Remote : PostgreSQL)
+		compile('mysql:mysql-connector-java') // --- for Local ---
+		// compile('org.postgresql:postgresql') // --- for Heroku ---
 
-	// Swagger (documentation features) :
+	// Swagger :
+	// (documentation features)
 		compile('io.springfox:springfox-swagger2:2.7.0')
 		compile('io.springfox:springfox-swagger-ui:2.7.0')
 
-	// GSON (Google library for transforming Objects to JSON and vice versa) :
+	// GSON :
+	// (Google library for transforming Objects to JSON and vice versa)
 		compile('com.google.code.gson:gson:2.8.2')
 
-	// Actuator (additional API endpoints) :
+	// Actuator :
+	// (additional API endpoints)
 		compile("org.springframework.boot:spring-boot-starter-actuator")
 
-	// Thymeleaf (professional mail templates) :
+	// Thymeleaf :
+	// (professional mail templates)
 		compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 
 }
